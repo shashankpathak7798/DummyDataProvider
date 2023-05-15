@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../components/input_bar.dart';
 
 class LeftView extends StatefulWidget {
-  const LeftView({Key? key}) : super(key: key);
+  const LeftView({Key? key, required this.updateResult}) : super(key: key);
+
+  final Function(bool val) updateResult;
 
   @override
   State<LeftView> createState() => _LeftViewState();
@@ -16,6 +18,7 @@ class _LeftViewState extends State<LeftView> {
 
   final List<InputBar> _inputBarList = [];
   int len = 0;
+
 
   @override
   void initState() {
@@ -75,8 +78,10 @@ class _LeftViewState extends State<LeftView> {
             child: CircleAvatar(
                 backgroundColor: Colors.cyanAccent,
                 child: InkWell(
-                    onTap: () {},
-                    child: const Icon(Icons.play_arrow_outlined, size: 40,)),
+                    onTap: () {
+                      widget.updateResult(true);
+                      },
+                    child: const Icon(Icons.play_arrow_outlined, size: 40,),),
               ),
             ),
           ),
